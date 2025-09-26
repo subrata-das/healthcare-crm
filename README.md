@@ -49,9 +49,10 @@ npm install && npm run dev  # if using frontend assets
 ```
 
 3. Configure environment
+Copy .env.example to .env:
 ```
 cp .env.example .env
-
+```
 Update the following in .env:
 ```
 APP_NAME=HealthcareCRM
