@@ -61,7 +61,6 @@ DB_USERNAME=your_username
 DB_PASSWORD=your_password
 
 ```
-```
 
 4. Run migrations and seeders
 ```
