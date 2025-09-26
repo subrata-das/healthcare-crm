@@ -96,11 +96,11 @@ class AppointmentController extends Controller
             return $this->error('Unprocessable content occurred', $validator->errors(), 422);
         }
         $appointment = Appointment::with('doctor')->find($id);
-        $this->authorize('update', $appointment);
+        
         if(!$appointment){
             return $this->error('Data not found', [], 404);
         }
-        
+        $this->authorize('update', $appointment);
         $preAppointment = Appointment::getDoctorAppointment();
         if($preAppointment->isNotEmpty()){
             return $this->error('Already schedule', [], 404);
@@ -118,10 +118,10 @@ class AppointmentController extends Controller
     public function destroy(string $id)
     {
         $appointment = Appointment::find($id);
-        $this->authorize('delete', $appointment);
         if(!$appointment){
             return $this->error('Data not found', [], 404);
         }
+        $this->authorize('delete', $appointment);
         $appointment->delete();
         return $this->success($appointment, 'Appointment has been deleted successfully.');
     }

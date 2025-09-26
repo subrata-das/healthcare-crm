@@ -67,10 +67,10 @@ class PatientController extends Controller
     public function show(string $id)
     {
         $patient = Patient::find($id);
-        $this->authorize('view', $patient);
         if(!$patient){
             return $this->error('Data not found', [], 404);
         }
+        $this->authorize('view', $patient);
         return $this->success($patient, 'Patient has been created successfully.');
     }
 
@@ -87,7 +87,6 @@ class PatientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->authorize('update', Patient::class);
 
         $validator = Validator::make(request()->all(), [
             'first_name' => 'string|max:255',
@@ -107,6 +106,7 @@ class PatientController extends Controller
         }
 
         $patient = Patient::find($id);
+        $this->authorize('update', $patient);
         if(!$patient){
             return $this->error('Data not found', [], 404);
         }
@@ -122,9 +122,8 @@ class PatientController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->authorize('delete', Patient::class);
         $patient = Patient::find($id);
-        // dd($patient);
+        $this->authorize('delete', $patient);
         if(!$patient){
             return $this->error('Data not found', [], 404);
         }

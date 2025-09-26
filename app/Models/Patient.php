@@ -56,7 +56,7 @@ class Patient extends Model
         });
 
         // Audit: Deleted
-        static::deleted(function ($patient) {
+        static::deleting(function ($patient) {
             Patient::logAudit($patient, 'deleted', $patient->toArray(), []);
         });
     }
