@@ -80,3 +80,11 @@ php artisan serve
 ## Project Url
 
 The application will be available at http://localhost:8000 or http://127.0.0.1:8000
+
+
+## Api Documentation
+
+Postman document available at https://documenter.getpostman.com/view/12811736/2sB3QDvD8A
+
+
+** Before scheduling an appointment, please ensure that the 'Update Profession Details' section in the doctor's profile is completed after logging in.
