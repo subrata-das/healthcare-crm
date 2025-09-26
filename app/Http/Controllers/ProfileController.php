@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Doctor;
 
 class ProfileController extends Controller
 {
@@ -16,8 +17,10 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $specialization = Doctor::where('user_id', Auth::user()->id)->get();
         return view('profile.edit', [
             'user' => $request->user(),
+            'specialization_not_completed' => $specialization->isEmpty()
         ]);
     }
 
@@ -56,5 +59,22 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function updateProfession(Request $request){
+        $validatedData = $request->validate([
+            'p_email' => 'required|string|email|unique:doctors,email',
+            'specialization' => 'required|string|max:255',
+            'phone' => 'required|string|max:10',
+        ]);
+        $validatedData['user_id'] = Auth::user()->id;
+        $validatedData['email'] = $validatedData['p_email'];
+
+        $specialization = Doctor::where('user_id', Auth::user()->id)->get();
+        if($specialization->isEmpty()){
+            $validatedData['email'] = $validatedData['p_email'];
+            unset($validatedData['p_email']);
+            Doctor::create($validatedData);
+        }
     }
 }

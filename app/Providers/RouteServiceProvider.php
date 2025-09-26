@@ -37,4 +37,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
     }
+
+    public static function authRedirect(){
+        $roleNames = auth()->user()->getRoleNames();
+        return config('webauthredirects.'.$roleNames[0]);
+    }
 }

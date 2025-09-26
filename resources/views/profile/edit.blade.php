@@ -12,6 +12,13 @@
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
+            @if($specialization_not_completed)
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('profile.partials.update-profession-form')
+                </div>
+            </div>
+            @endif
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
