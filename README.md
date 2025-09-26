@@ -37,19 +37,19 @@ This Laravel project includes:
 ## Installation
 
 1. Clone the repository
----------------------------
-git clone https://github.com/your-username/healthcare-crm.git
+```
+git clone https://github.com/subrata-das/healthcare-crm.git
 cd healthcare-crm
----------------------------
+```
 
 2. Install dependencies
----------------------------
+```
 composer install
 npm install && npm run dev  # if using frontend assets
----------------------------
+```
 
 3. Configure environment
----------------------------
+```
 cp .env.example .env
 
 Update the following in .env:
@@ -61,17 +61,17 @@ DB_USERNAME=your_username
 DB_PASSWORD=your_password
 
 ```
----------------------------
+```
 
 4. Run migrations and seeders
----------------------------
+```
 php artisan migrate --seed
----------------------------
+```
 
 5. Serve the app
----------------------------
+```
 php artisan serve
----------------------------
+```
 
 
 
