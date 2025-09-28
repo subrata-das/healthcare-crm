@@ -28,7 +28,7 @@ class AuthController extends Controller
             $user = Auth::user(); 
             $success['token'] =  $user->createToken('ApiToken')->plainTextToken; 
             $success['user'] =  $user->name;
-            $success['type'] =  $user->name;
+            $success['type'] =  "Bearer";
             return $this->success($success, 'User login successfully.');
         }else{ 
             return $this->error('Authentication Failed.', ['error'=>'Unauthorized'], 401);
